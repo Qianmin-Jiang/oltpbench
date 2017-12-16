@@ -391,7 +391,7 @@ public abstract class SQLUtil {
         // XXX: Disabled because of case issues with HSQLDB
         if (show_cols) sb.append(" (");
         first = true;
-        
+      
         // These are the column offset that we want to exclude
         Set<Integer> excluded = new HashSet<Integer>();
         for (int ex : exclude_columns)
@@ -399,13 +399,13 @@ public abstract class SQLUtil {
         
         for (Column catalog_col : catalog_tbl.getColumns()) {
             if (excluded.contains(catalog_col.getIndex())) continue;
-            if (first == false) {
-                if (show_cols) sb.append(", ");
-                values.append(", ");
-            }
-            if (show_cols) sb.append(escape_names ? catalog_col.getEscapedName() : catalog_col.getName());
-            values.append("?");
-            first = false;
+                if (first == false) {
+                    if (show_cols) sb.append(", ");
+                    values.append(", ");
+                }
+                if (show_cols) sb.append(escape_names ? catalog_col.getEscapedName() : catalog_col.getName());
+                values.append("?");
+                first = false;
         } // FOR
         if (show_cols) sb.append(")");
         
